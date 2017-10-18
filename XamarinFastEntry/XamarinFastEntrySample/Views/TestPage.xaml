@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="XamarinFastEntrySample.Views.TestPage"
+    xmlns:behaviors="clr-namespace:XamarinFastEntry;assembly=XamarinFastEntry"
+    >
+	<ContentPage.Content>
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+
+            <Label Text="Max Length" />
+            <Entry x:Name="maxLengthEntry" HeightRequest="40" Text="" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour MaxLength="7" x:Name="maxLengthEntryBehavior"/>
+            </Entry.Behaviors>
+            </Entry>
+                    
+            <Label Text="Number Only" />
+            <Entry x:Name="numberOnlyEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour IsNumeric="true" x:Name="numberOnlyEntryBehavior"/>
+            </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Amount Only" />
+            <Entry x:Name="amountOnlyEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour IsAmount="true" x:Name="amountOnlyEntryBehavior"/>
+            </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Max Length with Number Only" />
+            <Entry x:Name="numberOnlyMaxLengthEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour IsNumeric="true" MaxLength="3" x:Name="numberOnlyMaxLengthEntryBehavior"/>
+            </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Max Length with Amount Only" />
+            <Entry x:Name="amountOnlyMaxLengthEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour IsAmount="true" MaxLength="5" x:Name="amountOnlyMaxLengthEntryBehavior"/>
+            </Entry.Behaviors>
+                    </Entry>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+        
+	</ContentPage.Content>
+</ContentPage>
