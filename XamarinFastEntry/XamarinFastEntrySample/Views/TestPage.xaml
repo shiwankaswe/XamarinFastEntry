@@ -3,7 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="XamarinFastEntrySample.Views.TestPage"
     xmlns:behaviors="clr-namespace:XamarinFastEntry;assembly=XamarinFastEntry"
+    xmlns:vm="clr-namespace:XamarinFastEntrySample;" 
     >
+
+        <ContentPage.BindingContext>
+        <vm:TestPageViewModel />
+    </ContentPage.BindingContext>
+    
 	<ContentPage.Content>
 
         <Grid>
@@ -14,37 +20,44 @@
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
 
             <Label Text="Max Length" />
-            <Entry x:Name="maxLengthEntry" HeightRequest="40" Text="" Placeholder="" >
+            <Entry x:Name="maxLengthEntry" Text="{Binding maxLengthEntry, Mode=TwoWay}" HeightRequest="40" Placeholder="" >
             <Entry.Behaviors>
             <behaviors:XamarinFastEntryBehaviour MaxLength="7" x:Name="maxLengthEntryBehavior"/>
             </Entry.Behaviors>
             </Entry>
                     
             <Label Text="Number Only" />
-            <Entry x:Name="numberOnlyEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry x:Name="numberOnlyEntry" HeightRequest="40" Text="{Binding numberOnlyEntry, Mode=TwoWay}" Placeholder="" >
             <Entry.Behaviors>
             <behaviors:XamarinFastEntryBehaviour IsNumeric="true" x:Name="numberOnlyEntryBehavior"/>
             </Entry.Behaviors>
                     </Entry>
 
                     <Label Text="Amount Only" />
-            <Entry x:Name="amountOnlyEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry x:Name="amountOnlyEntry" HeightRequest="40" Text="{Binding amountOnlyEntry, Mode=TwoWay}" Placeholder="" >
             <Entry.Behaviors>
             <behaviors:XamarinFastEntryBehaviour IsAmount="true" x:Name="amountOnlyEntryBehavior"/>
             </Entry.Behaviors>
                     </Entry>
 
                     <Label Text="Max Length with Number Only" />
-            <Entry x:Name="numberOnlyMaxLengthEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry x:Name="numberOnlyMaxLengthEntry" HeightRequest="40" Text="{Binding numberOnlyMaxLengthEntry, Mode=TwoWay}" Placeholder="" >
             <Entry.Behaviors>
             <behaviors:XamarinFastEntryBehaviour IsNumeric="true" MaxLength="3" x:Name="numberOnlyMaxLengthEntryBehavior"/>
             </Entry.Behaviors>
                     </Entry>
 
                     <Label Text="Max Length with Amount Only" />
-            <Entry x:Name="amountOnlyMaxLengthEntry" HeightRequest="40"   Text="" Placeholder="" >
+            <Entry x:Name="amountOnlyMaxLengthEntry" HeightRequest="40" Text="{Binding amountOnlyMaxLengthEntry, Mode=TwoWay}" Placeholder="" >
             <Entry.Behaviors>
             <behaviors:XamarinFastEntryBehaviour IsAmount="true" MaxLength="5" x:Name="amountOnlyMaxLengthEntryBehavior"/>
+            </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Mask" />
+            <Entry x:Name="maskEntry" HeightRequest="40" Text="{Binding maskEntry, Mode=TwoWay}" Placeholder="" >
+            <Entry.Behaviors>
+            <behaviors:XamarinFastEntryBehaviour Mask="## ##" x:Name="maskEntryBehavior"/>
             </Entry.Behaviors>
                     </Entry>
 

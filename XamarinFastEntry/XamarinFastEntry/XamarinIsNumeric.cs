@@ -35,6 +35,15 @@ namespace XamarinFastEntry
                         output = entryText;
                     }
                 }
+            }else{
+                string hil = entryText;
+                double Num;
+                bool isNum = double.TryParse(hil, out Num);
+                if (!isNum)
+                {
+                    entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                    output = entryText;
+                }
             }
 
 

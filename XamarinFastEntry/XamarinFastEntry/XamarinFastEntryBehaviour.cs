@@ -13,11 +13,14 @@ namespace XamarinFastEntry
         XamarinMaxLength xamarinMaxLength;
         XamarinIsNumeric xamarinIsNumeric;
         XamarinIsAmount xamarinIsAmount;
+        XamarinMask xamarinMask;
 
-        public XamarinFastEntryBehaviour(){
+        public XamarinFastEntryBehaviour()
+        {
             xamarinMaxLength = new XamarinMaxLength();
             xamarinIsNumeric = new XamarinIsNumeric();
             xamarinIsAmount = new XamarinIsAmount();
+            xamarinMask = new XamarinMask();
         }
 
         protected override void OnAttachedTo(Entry bindable)
@@ -39,12 +42,14 @@ namespace XamarinFastEntry
             var newString = args.NewTextValue;
             string entryText = entry.Text;
 
-            if(MaxLength!=null && MaxLength>=0 && entryText.Length > 0){
-                var output = xamarinMaxLength.ProcessLength(entryText,oldString,newString,MaxLength);
+            if (MaxLength != null && MaxLength >= 0 && entryText.Length > 0)
+            {
+                var output = xamarinMaxLength.ProcessLength(entryText, oldString, newString, MaxLength);
                 entryText = output;
             }
 
-            if(IsNumeric!=null && IsNumeric==true && entryText.Length>0){
+            if (IsNumeric != null && IsNumeric == true && entryText.Length > 0)
+            {
                 var output = xamarinIsNumeric.ProcessIsNumeric(entryText, oldString, newString);
                 entryText = output;
             }
@@ -55,7 +60,15 @@ namespace XamarinFastEntry
                 entryText = output;
             }
 
+            if (Mask != null && Mask.Length > 0 && entryText.Length > 0)
+            {
+                var output = xamarinMask.ProcessMask(entryText, oldString, newString, Mask);
+                entryText = output;
+
+            }
+
             entry.Text = entryText;
+
         }
     }
 }
