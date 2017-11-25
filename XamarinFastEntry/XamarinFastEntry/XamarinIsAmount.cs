@@ -23,6 +23,11 @@ namespace XamarinFastEntry
                     {
                         entryText = entryText.Remove(entryText.Length - 1); // remove last char
                         output = entryText;
+                    }else if(hil == "."){
+                        if(oldString.Contains(".")){
+                            entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                            output = entryText; 
+                        }
                     }
                 }
                 else
