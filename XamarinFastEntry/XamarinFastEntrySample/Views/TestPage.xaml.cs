@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using XamarinFastEntry;
 using Xamarin.Forms;
 
 namespace XamarinFastEntrySample.Views

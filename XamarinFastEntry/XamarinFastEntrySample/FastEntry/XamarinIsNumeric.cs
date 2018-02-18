@@ -1,5 +1,8 @@
 ﻿using System;
-namespace XamarinFastEntry
+using System.Collections.Generic;
+using System.Text;
+
+namespace XamarinFastEntrySample.FastEntry
 {
     public class XamarinIsNumeric
     {
@@ -24,7 +27,8 @@ namespace XamarinFastEntry
                         entryText = entryText.Remove(entryText.Length - 1); // remove last char
                         output = entryText;
                     }
-                }else
+                }
+                else
                 {
                     string hil = entryText;
                     double Num;
@@ -35,7 +39,9 @@ namespace XamarinFastEntry
                         output = entryText;
                     }
                 }
-            }else{
+            }
+            else
+            {
                 string hil = entryText;
                 double Num;
                 bool isNum = double.TryParse(hil, out Num);

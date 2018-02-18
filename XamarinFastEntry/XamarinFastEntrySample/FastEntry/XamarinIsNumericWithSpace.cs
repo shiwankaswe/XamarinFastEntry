@@ -1,9 +1,12 @@
 ﻿using System;
-namespace XamarinFastEntry
+using System.Collections.Generic;
+using System.Text;
+
+namespace XamarinFastEntrySample.FastEntry
 {
-    public class XamarinIsAmount
+    public class XamarinIsNumericWithSpace
     {
-        public string ProcessIsAmount(string entryText, string oldString, string newString)
+        public string ProcessIsNumericWithSpace(string entryText, string oldString, string newString)
         {
             string output = entryText;
 
@@ -19,23 +22,26 @@ namespace XamarinFastEntry
 
                     double Num;
                     bool isNum = double.TryParse(hil, out Num);
-                    if (!isNum && hil!=".")
+                    if (!isNum && hil != " ")
                     {
                         entryText = entryText.Remove(entryText.Length - 1); // remove last char
                         output = entryText;
-                    }else if(hil == "."){
-                        if(oldString.Contains(".")){
+                    }
+                    else if (hil == " ")
+                    {
+                        if (oldString.Contains(" "))
+                        {
                             entryText = entryText.Remove(entryText.Length - 1); // remove last char
-                            output = entryText; 
+                            output = entryText;
                         }
                     }
                 }
                 else
                 {
-                    string hil = entryText.Substring(entryText.Length-1,1);
+                    string hil = entryText.Substring(entryText.Length - 1, 1);
                     double Num;
                     bool isNum = double.TryParse(hil, out Num);
-                    if (!isNum && hil != ".")
+                    if (!isNum && hil != " ")
                     {
                         entryText = entryText.Remove(entryText.Length - 1); // remove last char
                         output = entryText;

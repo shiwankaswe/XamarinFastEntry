@@ -1,5 +1,8 @@
 ﻿using System;
-namespace XamarinFastEntry
+using System.Collections.Generic;
+using System.Text;
+
+namespace XamarinFastEntrySample.FastEntry
 {
     public class XamarinMaxLength
     {
@@ -17,13 +20,13 @@ namespace XamarinFastEntry
                     else
                         hil = newString;
 
-                        // if Entry text is longer then valid length
-                        if (entryText.Length > maxLength)
-                        {
-                            entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                    // if Entry text is longer then valid length
+                    if (entryText.Length > maxLength)
+                    {
+                        entryText = entryText.Remove(entryText.Length - 1); // remove last char
 
-                            output = entryText;
-                        }
+                        output = entryText;
+                    }
                 }
             }
 

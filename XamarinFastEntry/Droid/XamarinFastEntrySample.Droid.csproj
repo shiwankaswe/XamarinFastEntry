@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -138,12 +138,6 @@
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XamarinFastEntry\XamarinFastEntry.csproj">
-      <Project>{86C23DE2-A445-409E-ABD3-3674DBE4EA39}</Project>
-      <Name>XamarinFastEntry</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\XamarinFastEntrySample\XamarinFastEntrySample.projitems" Label="Shared" Condition="Exists('..\XamarinFastEntrySample\XamarinFastEntrySample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
