@@ -26,11 +26,11 @@ This Created using Exteneding a Behavior<Entry>
   
   Define the Max Length for the Entry
   
- > <Entry x:Name="maxLengthEntry" Text="{Binding maxLengthEntry, Mode=TwoWay}" HeightRequest="40" Placeholder="" >
- >     <Entry.Behaviors>
- >         <behaviors:XamarinFastEntryBehaviour MaxLength="5" />
- >     </Entry.Behaviors>
- > </Entry>
+> <Entry x:Name="maxLengthEntry" Text="{Binding maxLengthEntry, Mode=TwoWay}" HeightRequest="40" Placeholder="" >
+>     <Entry.Behaviors>
+>         <behaviors:XamarinFastEntryBehaviour MaxLength="5" />
+>     </Entry.Behaviors>
+> </Entry>
   
   
   
