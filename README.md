@@ -8,7 +8,7 @@
 <li>Numeric With Space</li>
 </ol>
 <p>This is a free Source that any one can use with their xamarin projects</p>
-<p>I have created this project to full fill the one my project requirement, i have seached on the internet to find some library or sample code, but unluckyly i did not found any good solution. then i decided to make it by my own.<br>
+<p>I have created this project to full fill the one my project requirement, I have searched on the internet to find some library or sample code, but unluckily I did not found any good solution. then I decided to make it on my own.<br>
 And i need to share what i did with other people to make their work easier</p>
 <p>This Created using Exteneding a Behavior&lt;Entry&gt;</p>
 <p>How to Use it in the YOur Application</p>
