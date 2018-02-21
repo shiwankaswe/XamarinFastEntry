@@ -1,4 +1,6 @@
 <h1><a id="XamarinFastEntry_0"></a>XamarinFastEntry</h1>
+### NuGet
+* Available on NuGet: [somostechies.facebook](https://www.nuget.org/packages/XamarinFastEntry.Behaviors) [![NuGet](https://img.shields.io/nuget/v/XamarinFastEntry.Behaviors.svg?label=NuGet)](https://www.nuget.org/packages/XamarinFastEntry.Behaviors/1.0.0)
 <p>Extended features for Xamarin Entry control.</p>
 <ol>
 <li>Masked Text Box</li>
