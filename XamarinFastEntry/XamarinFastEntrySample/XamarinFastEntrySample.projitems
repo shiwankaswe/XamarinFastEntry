@@ -9,12 +9,6 @@
     <Import_RootNamespace>XamarinFastEntrySample</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinFastEntryBehaviour.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinIsAmount.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinIsNumeric.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinIsNumericWithSpace.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinMask.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FastEntry\XamarinMaxLength.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CloudDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
