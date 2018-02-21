@@ -141,6 +141,12 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XamarinFastEntry.Behaviors\XamarinFastEntry.Behaviors.csproj">
+      <Project>{2526a8f2-d8ea-4f39-aa82-44d01f8c6caf}</Project>
+      <Name>XamarinFastEntry.Behaviors</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\XamarinFastEntrySample\XamarinFastEntrySample.projitems" Label="Shared" Condition="Exists('..\XamarinFastEntrySample\XamarinFastEntrySample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
