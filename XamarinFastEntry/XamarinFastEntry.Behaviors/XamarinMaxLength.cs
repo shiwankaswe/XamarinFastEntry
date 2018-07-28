@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XamarinFastEntrySample.FastEntry
+﻿namespace XamarinFastEntry.Behaviors
 {
     public class XamarinMaxLength
     {
@@ -10,25 +6,21 @@ namespace XamarinFastEntrySample.FastEntry
         {
             string output = entryText;
 
-            if (oldString != null)
-            {
-                if (newString.Length > oldString.Length)
-                {
-                    string hil = "";
-                    if (oldString.Length > 0)
-                        hil = entryText.Remove(0, entryText.Length - 1);
-                    else
-                        hil = newString;
+            if (oldString == null) return output;
+            if (newString.Length <= oldString.Length) return output;
 
-                    // if Entry text is longer then valid length
-                    if (entryText.Length > maxLength)
-                    {
-                        entryText = entryText.Remove(entryText.Length - 1); // remove last char
+            string hil = "";
+            if (oldString.Length > 0)
+                hil = entryText.Remove(0, entryText.Length - 1);
+            else
+                hil = newString;
 
-                        output = entryText;
-                    }
-                }
-            }
+            // if Entry text is longer than valid length
+            if (!(entryText.Length > maxLength)) return output;
+
+            entryText = entryText.Remove(entryText.Length - 1); // remove last char
+
+            output = entryText;
 
             return output;
         }

@@ -1,43 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
-namespace XamarinFastEntrySample.FastEntry
+namespace XamarinFastEntry.Behaviors
 {
     public class XamarinFastEntryBehaviour : Behavior<Entry>
     {
-        public int? MaxLength { get; set; }
-        public string Mask { get; set; }
-        public bool? IsNumeric { get; set; }
-        public bool? IsAmount { get; set; }
-        public bool? IsNumericWithSpace { get; set; }
+        public static readonly BindableProperty MaxLengthProperty =
+            BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(XamarinFastEntryBehaviour), defaultValue: int.MaxValue);
 
-        XamarinMaxLength xamarinMaxLength;
-        XamarinIsNumeric xamarinIsNumeric;
-        XamarinIsAmount xamarinIsAmount;
-        XamarinMask xamarinMask;
-        XamarinIsNumericWithSpace _xamarinIsNumericWithSpace;
+        public static readonly BindableProperty IsNumericProperty =
+            BindableProperty.Create(nameof(IsNumeric), typeof(bool), typeof(XamarinFastEntryBehaviour), defaultValue: default(bool));
+
+        public static readonly BindableProperty MaskProperty = BindableProperty.Create(nameof(Mask), typeof(string),
+            typeof(XamarinFastEntryBehaviour), defaultValue: string.Empty);
+
+        public static readonly BindableProperty IsAmountProperty = BindableProperty.Create(nameof(IsAmount),
+            typeof(bool), typeof(XamarinFastEntryBehaviour), defaultValue: default(bool));
+
+        public static readonly BindableProperty IsNumericWithSpaceProperty = BindableProperty.Create(nameof(IsNumericWithSpace),
+            typeof(bool), typeof(XamarinFastEntryBehaviour), defaultValue: default(bool));
+
+        public int MaxLength
+        {
+            get => (int)GetValue(MaxLengthProperty);
+            set => SetValue(MaxLengthProperty, value);
+        }
+
+        public string Mask
+        {
+            get => (string)GetValue(MaskProperty);
+            set => SetValue(MaskProperty, value);
+        }
+
+        public bool IsNumeric
+        {
+            get => (bool)GetValue(IsNumericProperty);
+            set => SetValue(IsNumericProperty, value);
+        }
+
+        public bool IsAmount
+        {
+            get => (bool)GetValue(IsAmountProperty);
+            set => SetValue(IsAmountProperty, value);
+        }
+
+        public Entry AssociatedObject { get; private set; }
+
+        public bool IsNumericWithSpace
+        {
+            get => (bool)GetValue(IsNumericWithSpaceProperty);
+            set => SetValue(IsNumericWithSpaceProperty, value);
+        }
+
+        private readonly XamarinMaxLength _xamarinMaxLength;
+        private readonly XamarinIsNumeric _xamarinIsNumeric;
+        private readonly XamarinIsAmount _xamarinIsAmount;
+        private readonly XamarinMask _xamarinMask;
+        private readonly XamarinIsNumericWithSpace _xamarinIsNumericWithSpace;
 
         public XamarinFastEntryBehaviour()
         {
-            xamarinMaxLength = new XamarinMaxLength();
-            xamarinIsNumeric = new XamarinIsNumeric();
-            xamarinIsAmount = new XamarinIsAmount();
-            xamarinMask = new XamarinMask();
+            _xamarinMaxLength = new XamarinMaxLength();
+            _xamarinIsNumeric = new XamarinIsNumeric();
+            _xamarinIsAmount = new XamarinIsAmount();
+            _xamarinMask = new XamarinMask();
             _xamarinIsNumericWithSpace = new XamarinIsNumericWithSpace();
         }
 
         protected override void OnAttachedTo(Entry bindable)
         {
+            AssociatedObject = bindable;
+            AssociatedObject.BindingContextChanged += OnBindingContextChanged;
             bindable.TextChanged += OnEntryTextChanged;
             base.OnAttachedTo(bindable);
         }
 
         protected override void OnDetachingFrom(Entry bindable)
         {
+            AssociatedObject.BindingContextChanged -= OnBindingContextChanged;
             bindable.TextChanged -= OnEntryTextChanged;
             base.OnDetachingFrom(bindable);
+        }
+
+        private void OnBindingContextChanged(object sender, EventArgs e)
+        {
+            OnBindingContextChanged();
         }
 
         void OnEntryTextChanged(object sender, TextChangedEventArgs args)
@@ -47,9 +94,9 @@ namespace XamarinFastEntrySample.FastEntry
             var newString = args.NewTextValue;
             string entryText = entry.Text;
 
-            if (MaxLength != null && MaxLength >= 0 && entryText.Length > 0)
+            if (MaxLength >= 0 && entryText.Length > 0)
             {
-                var output = xamarinMaxLength.ProcessLength(entryText, oldString, newString, MaxLength);
+                var output = _xamarinMaxLength.ProcessLength(entryText, oldString, newString, MaxLength);
                 if (output != entryText)
                 {
                     entryText = output;
@@ -58,9 +105,9 @@ namespace XamarinFastEntrySample.FastEntry
                 }
             }
 
-            if (IsNumeric != null && IsNumeric == true && entryText.Length > 0)
+            if (IsNumeric && entryText.Length > 0)
             {
-                var output = xamarinIsNumeric.ProcessIsNumeric(entryText, oldString, newString);
+                var output = _xamarinIsNumeric.ProcessIsNumeric(entryText, oldString, newString);
                 if (output != entryText)
                 {
                     entryText = output;
@@ -69,9 +116,9 @@ namespace XamarinFastEntrySample.FastEntry
                 }
             }
 
-            if (IsAmount != null && IsAmount == true && entryText.Length > 0)
+            if (IsAmount && entryText.Length > 0)
             {
-                var output = xamarinIsAmount.ProcessIsAmount(entryText, oldString, newString);
+                var output = _xamarinIsAmount.ProcessIsAmount(entryText, oldString, newString);
                 if (output != entryText)
                 {
                     entryText = output;
@@ -80,7 +127,7 @@ namespace XamarinFastEntrySample.FastEntry
                 }
             }
 
-            if (IsNumericWithSpace != null && IsNumericWithSpace == true && entryText.Length > 0)
+            if (IsNumericWithSpace && entryText.Length > 0)
             {
                 var output = _xamarinIsNumericWithSpace.ProcessIsNumericWithSpace(entryText, oldString, newString);
                 if (output != entryText)
@@ -91,9 +138,9 @@ namespace XamarinFastEntrySample.FastEntry
                 }
             }
 
-            if (Mask != null && Mask.Length > 0 && entryText.Length > 0)
+            if (!string.IsNullOrEmpty(Mask) && entryText.Length > 0)
             {
-                var output = xamarinMask.ProcessMask(entryText, oldString, newString, Mask);
+                var output = _xamarinMask.ProcessMask(entryText, oldString, newString, Mask);
                 if (output != entryText)
                 {
                     entryText = output;
@@ -102,6 +149,12 @@ namespace XamarinFastEntrySample.FastEntry
                 }
             }
             entry.Text = entryText;
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            BindingContext = AssociatedObject.BindingContext;
         }
     }
 }

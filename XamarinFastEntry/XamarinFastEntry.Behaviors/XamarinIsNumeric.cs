@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XamarinFastEntrySample.FastEntry
+﻿namespace XamarinFastEntry.Behaviors
 {
     public class XamarinIsNumeric
     {
@@ -14,42 +10,35 @@ namespace XamarinFastEntrySample.FastEntry
             {
                 if (newString.Length > oldString.Length)
                 {
-                    string hil = "";
+                    string hil;
                     if (oldString.Length > 0)
                         hil = entryText.Remove(0, entryText.Length - 1);
                     else
                         hil = newString;
 
-                    double Num;
-                    bool isNum = double.TryParse(hil, out Num);
-                    if (!isNum)
-                    {
-                        entryText = entryText.Remove(entryText.Length - 1); // remove last char
-                        output = entryText;
-                    }
+                    bool isNum = double.TryParse(hil, out _);
+                    if (isNum) return output;
+                    entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                    output = entryText;
                 }
                 else
                 {
                     string hil = entryText;
-                    double Num;
-                    bool isNum = double.TryParse(hil, out Num);
-                    if (!isNum)
-                    {
-                        entryText = entryText.Remove(entryText.Length - 1); // remove last char
-                        output = entryText;
-                    }
+
+                    bool isNum = double.TryParse(hil, out _);
+                    if (isNum) return output;
+                    entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                    output = entryText;
                 }
             }
             else
             {
                 string hil = entryText;
-                double Num;
-                bool isNum = double.TryParse(hil, out Num);
-                if (!isNum)
-                {
-                    entryText = entryText.Remove(entryText.Length - 1); // remove last char
-                    output = entryText;
-                }
+                bool isNum = double.TryParse(hil, out _);
+
+                if (isNum) return output;
+                entryText = entryText.Remove(entryText.Length - 1); // remove last char
+                output = entryText;
             }
 
 

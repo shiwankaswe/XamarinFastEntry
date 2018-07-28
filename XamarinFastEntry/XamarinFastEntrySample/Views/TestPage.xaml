@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="XamarinFastEntrySample.Views.TestPage"
-    xmlns:behaviors="clr-namespace:XamarinFastEntrySample.FastEntry"
-    xmlns:vm="clr-namespace:XamarinFastEntrySample;" 
-    >
+             xmlns:vm="clr-namespace:XamarinFastEntrySample;"
+             xmlns:behaviors="clr-namespace:XamarinFastEntry.Behaviors;assembly=XamarinFastEntry.Behaviors">
 
         <ContentPage.BindingContext>
         <vm:TestPageViewModel />

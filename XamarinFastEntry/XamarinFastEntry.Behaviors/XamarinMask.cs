@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XamarinFastEntrySample.FastEntry
+﻿namespace XamarinFastEntry.Behaviors
 {
     public class XamarinMask
     {
@@ -10,51 +6,47 @@ namespace XamarinFastEntrySample.FastEntry
         {
             string output = entryText;
 
-            if (oldString != null)
+            if (oldString == null) return output;
+            if (!returnCheck(oldString, mask)) return output;
+            if (newString.Length <= oldString.Length) return output;
+
+            if (mask.Length >= newString.Length)
             {
-                if (returnCheck(oldString, mask))
+                var ln = entryText.Length - 1;
+                var st = mask.Substring(ln, 1);
+                string newstr;
+
+                if (oldString.Length > 0)
+                    newstr = newString.Substring(newString.Length - 1);
+                else
+                    newstr = newString;
+
+                if (output.Length > 1)
+                    output = output.Remove(output.Length - 1, 1);
+                else
+                    output = "";
+
+                if (st == "#")
                 {
-                    if (newString.Length > oldString.Length)
+                    output = output + newstr;
+                }
+                else
+                {
+                    foreach (var s in mask.Substring(ln))
                     {
-                        if (mask.Length >= newString.Length)
+                        if (s == '#')
                         {
-                            var ln = entryText.Length - 1;
-                            var st = mask.Substring(ln, 1);
-                            string newstr = "";
-                            if (oldString.Length > 0)
-                                newstr = newString.Substring(newString.Length - 1);
-                            else
-                                newstr = newString;
-                            if (output.Length > 1)
-                                output = output.Remove(output.Length - 1, 1);
-                            else
-                                output = "";
-                            if (st == "#")
-                            {
-                                output = output + newstr;
-                            }
-                            else
-                            {
-                                foreach (var s in mask.Substring(ln))
-                                {
-                                    if (s == '#')
-                                    {
-                                        output = output + newstr;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        output = output + s;
-                                    }
-                                }
-                            }
+                            output = output + newstr;
+                            break;
                         }
-                        else
-                        {
-                            output = oldString;
-                        }
+
+                        output = output + s;
                     }
                 }
+            }
+            else
+            {
+                output = oldString;
             }
 
             return output;
